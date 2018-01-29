@@ -19,7 +19,7 @@ class AlexaStatsCrawler
 
   def crawl(domain)
     @countries ||= Wombat.crawl do
-      base_url 'http://www.alexa.com'
+      base_url 'https://www.alexa.com'
       path "/siteinfo/#{domain}"
 
       countries({ css: '#demographics_div_country_table:not(.data-table-nodata) tbody tr' }, :iterator) do
