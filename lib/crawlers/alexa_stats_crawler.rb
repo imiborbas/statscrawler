@@ -22,7 +22,7 @@ class AlexaStatsCrawler
       base_url 'http://www.alexa.com'
       path "/siteinfo/#{domain}"
 
-      countries({ css: '#demographics_div_country_table tbody tr' }, :iterator) do
+      countries({ css: '#demographics_div_country_table:not(.data-table-nodata) tbody tr' }, :iterator) do
         country(css: 'td:nth-of-type(1) a') { |country| country.delete("\u00A0").strip }
         percentage(css: 'td:nth-of-type(2) span') { |percentage| percentage.delete('%').to_f }
       end
