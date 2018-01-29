@@ -1,24 +1,26 @@
-# README
+# statscrawler
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Rails app that retrieves basic statistics about a given domain.
 
-Things you may want to cover:
+Highlights:
+* Fetches the top 5 countries that visits the domain from alexa.com
+* Counts the internal and external links going out from the homepage of the domain
+* Uses Sidekiq to distribute processing
+* It is configured to use SQLite, but it is capable of using any database
 
-* Ruby version
+To run the crawler synchronously:
+```
+$ bin/rails c
+irb(main):001:0> PublisherCrawler.new.perform('vice.com')
+```
 
-* System dependencies
+To run the crawler asynchronously:
+```
+$ bin/rails c
+irb(main):001:0> PublisherCrawler.perform_async('vice.com')
+```
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+To run the tests:
+```
+$ ruby test/run_test.rb
+```
